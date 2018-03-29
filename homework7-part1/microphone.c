@@ -15,7 +15,7 @@ void InitADC() {
     // in ADC_MEM0 (single-channel conversion, repeat mode)
     ADC14_configureSingleSampleMode(ADC_MEM0, true);
 
-    // This configures the ADC in automatic conversion mode
+    // This configures the ADC in manual conversion mode
     ADC14_enableSampleTimer(ADC_MANUAL_ITERATION);
 }
 
@@ -37,6 +37,19 @@ void InitMicrophone() {
     GPIO_setAsPeripheralModuleFunctionInputPin(GPIO_PORT_P4,
                                                GPIO_PIN3,
                                                GPIO_TERTIARY_MODULE_FUNCTION);
+
+    //=============================================================
+    // TO BE COMPLETED BY YOU
+
+    // Enable conversion on ADC14
+
+
+
+
+
+
+    //=============================================================
+
 }
 
 unsigned GetSampleMicrophone() {
@@ -56,4 +69,5 @@ unsigned GetSampleMicrophone() {
 
 
     //=============================================================
+
 }
