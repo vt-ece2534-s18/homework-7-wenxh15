@@ -11,6 +11,8 @@
 //   6 = third column contains 3 X
 //   7 = diagonal contains 3 X
 //   8 = antidiagonal contains 3 X
+// There is also a non-winning output:
+//   0 = No winning combination exists
 int CrossWins(tcellstate map[9]) {
     //=============================================================
     // TO BE COMPLETED BY YOU
@@ -26,6 +28,9 @@ int CrossWins(tcellstate map[9]) {
 
 
     //=============================================================
+
+    return 0;
+
 }
 
 // This function returns the winning code when O wins
@@ -38,6 +43,8 @@ int CrossWins(tcellstate map[9]) {
 //   6 = third column contains 3 O
 //   7 = diagonal contains 3 O
 //   8 = antidiagonal contains 3 O
+// There is also a non-winning output:
+//   0 = No winning combination exists
 int CircleWins(tcellstate map[9]) {
     //=============================================================
     // TO BE COMPLETED BY YOU
@@ -53,6 +60,9 @@ int CircleWins(tcellstate map[9]) {
 
 
     //=============================================================
+
+    return 0;
+
 }
 
 // This function returns true if there is a tie
