@@ -1,4 +1,5 @@
 #include "sound.h"
+#include "hwtimer.h"
 #include "swtimer.h"
 #include <ti/devices/msp432p4xx/driverlib/driverlib.h>
 
