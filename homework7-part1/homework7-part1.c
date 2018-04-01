@@ -35,22 +35,30 @@ void T32_INT1_IRQHandler() {
 
 int main(void) {
 
+    // Device initialization
     InitTimer();
     InitMicrophone();
     InitDisplay();
 
-    Interrupt_enableInterrupt(INT_T32_INT1);  // 8KHz for ADC
+    // Enable ISR for a TIMER32_BASE_0 overflow at 8KHz
+    Interrupt_enableInterrupt(INT_T32_INT1);
     Interrupt_enableMaster();
 
+    // Create a 500ms software timer tied to TIMER32_BASE_0
     tSWTimer oneshot500ms;
     InitSWTimer (&oneshot500ms, TIMER32_1_BASE, 1500000);
     StartSWTimer(&oneshot500ms);
 
     while (1) {
+        // Every 500ms, the software timer overflows
         if (SWTimerOneShotExpired(&oneshot500ms)) {
+
+            // Display the max and min obtained from ADC
             DisplayMaxMin(glbMax, glbMin);
             glbMax = 0;
             glbMin = 0xFFFF;
+
+            // Restart the software timer
             StartSWTimer(&oneshot500ms);
         }
     }

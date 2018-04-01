@@ -3,7 +3,7 @@
 
 void InitTimer() {
 
-    CS_setDCOFrequency(SYSTEMCLOCK); // go to 16 MHz
+    CS_setDCOFrequency(SYSTEMCLOCK);
 
     WDT_A_hold(WDT_A_BASE);
 
@@ -18,7 +18,7 @@ void InitTimer() {
                        TIMER32_PRESCALER_1,
                        TIMER32_32BIT,
                        TIMER32_FREE_RUN_MODE);
-    Timer32_setCount(TIMER32_1_BASE, UINT32_MAX);  // 16 MHz
+    Timer32_setCount(TIMER32_1_BASE, UINT32_MAX);
     Timer32_startTimer(TIMER32_1_BASE, false);
 }
 

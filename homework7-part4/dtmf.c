@@ -24,6 +24,17 @@
 // then c = 2 * cos (2*pi*1/8) = 1.4142
 // Be sure to compute cos() in radians
 //
+// This results in the following filter coefficients
+//
+//      Gtap structure     Fgoertzel       Coefficient
+//      ----------------------------------------------
+//      t697                 697 Hz      0.8538689 * 2
+//      t770                 770 Hz      0.8226405 * 2
+//      t852                 852 Hz      0.7843435 * 2
+//      t1209               1209 Hz      0.5820520 * 2
+//      t1336               1336 Hz      0.4981851 * 2
+//      t1477               1477 Hz      0.3993092 * 2
+//
 // To encode the Goertzel filter coefficient into Gtap,
 // you have to convert the floating point value of c
 // into a fixed point value.

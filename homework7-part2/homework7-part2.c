@@ -4,10 +4,12 @@
 #include "sound.h"
 #include "button.h"
 
+// This expresses the unit-duration (1/16th of a full note) in ms
 #define DURATION 100
 
 int main(void) {
 
+    // Device Initialization
     InitTimer();
     InitSound();
     InitButtonS1();
@@ -15,6 +17,7 @@ int main(void) {
 
     while (1) {
 
+        // The first song is tied to the first button
         if (ButtonS1Pushed()) {
             PlaySound(note_g4,  2*DURATION);   // G4 // 2
             PlaySound(note_c5,  2*DURATION);   // C5 // 2
@@ -45,6 +48,7 @@ int main(void) {
             PlaySound(note_g5, 16*DURATION);   // G5 // 16
         }
 
+        // The second song is tied to the second button
         if (ButtonS2Pushed()) {
             PlaySound(note_g4,  2*DURATION);   // G4 // 2
             PlaySound(note_a4,  2*DURATION);   // A4 // 2

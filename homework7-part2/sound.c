@@ -2,16 +2,27 @@
 #include "swtimer.h"
 #include <ti/devices/msp432p4xx/driverlib/driverlib.h>
 
+// This configuration sets a 50% duty cycle configuration
+// for CCR4. You will have to figure out what Timer_A module
+// drives the buzzer, i.e. what pin TAx.4 is driving the
+// buzzer. The Timer_A module then is x.
+
 Timer_A_PWMConfig pwmConfig = {
         TIMER_A_CLOCKSOURCE_SMCLK,
-        TIMER_A_CLOCKSOURCE_DIVIDER_1,    // 3 MHz
-        (int) (3000000 / 523.25),         // C5
+        TIMER_A_CLOCKSOURCE_DIVIDER_1,
+        (int) (SYSTEMCLOCK / 523.25),         // C5
         TIMER_A_CAPTURECOMPARE_REGISTER_4,
         TIMER_A_OUTPUTMODE_RESET_SET,
-        (int) (1500000 / 523.25)
+        (int) ((SYSTEMCLOCK/2) / 523.25)
 };
 
+
 void InitSound() {
+
+    // This function switches the IC pin connected to
+    // the buzzer from GPIO functionality to Timer_A functionality
+    // so that we can drive it with PWM.
+
     GPIO_setAsPeripheralModuleFunctionOutputPin(
             GPIO_PORT_P2,
             GPIO_PIN7,
