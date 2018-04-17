@@ -17,20 +17,41 @@ int CrossWins(tcellstate map[9]) {
     //=============================================================
     // TO BE COMPLETED BY YOU
     // returns the winning code for 'X'
-
-
-
-
-
-
-
-
-
-
-    //=============================================================
-
-    return 0;
-
+    if ((map[0] == map[1] == map[2] == map[3] == map[4] == map[5] == map[6] == map[7] == map[8]) && (map[0] != empty)){
+    if (map[0] == map[1] == map[2] == cross)
+    {
+        return 1;
+    }
+    else if (map[3] == map[4] == map[5] == cross)
+    {
+        return 2;
+    }
+    else if (map[6] == map[7] == map[8] == cross)
+    {
+        return 3;
+    }
+    else if (map[0] == map[3] == map[6] == cross)
+    {
+        return 4;
+    }
+    else if (map[1] == map[4] == map[7] == cross)
+    {
+        return 5;
+    }
+    else if (map[2] == map[5] == map[8] == cross)
+    {
+        return 6;
+    }
+    else if (map[0] == map[4] == map[8] == cross)
+    {
+        return 7;
+    }
+    else if (map[2] == map[4] == map[6] == cross)
+    {
+        return 8;
+    }
+    }
+        return 0;
 }
 
 // This function returns the winning code when O wins
@@ -49,20 +70,41 @@ int CircleWins(tcellstate map[9]) {
     //=============================================================
     // TO BE COMPLETED BY YOU
     // returns the winning code for 'O'
-
-
-
-
-
-
-
-
-
-
-    //=============================================================
-
-    return 0;
-
+    if ((map[0] == map[1] == map[2] == map[3] == map[4] == map[5] == map[6] == map[7] == map[8]) && (map[0] != empty)){
+    if (map[0] == map[1] == map[2] == circle)
+    {
+        return 9;
+    }
+    else if (map[3] == map[4] == map[5] == circle)
+    {
+        return 10;
+    }
+    else if (map[6] == map[7] == map[8] == circle)
+    {
+        return 11;
+    }
+    else if (map[0] == map[3] == map[6] == circle)
+    {
+        return 12;
+    }
+    else if (map[1] == map[4] == map[7] == circle)
+    {
+        return 13;
+    }
+    else if (map[2] == map[5] == map[8] == circle)
+    {
+        return 14;
+    }
+    else if (map[0] == map[4] == map[8] == circle)
+    {
+        return 15;
+    }
+    else if (map[2] == map[4] == map[6] == circle)
+    {
+        return 16;
+    }
+    }
+        return 0;
 }
 
 // This function returns true if there is a tie
