@@ -19,6 +19,8 @@ void InitADC() {
     ADC14_enableSampleTimer(ADC_MANUAL_ITERATION);
 }
 
+
+
 void InitMicrophone() {
 
     InitADC();
@@ -42,32 +44,25 @@ void InitMicrophone() {
     // TO BE COMPLETED BY YOU
 
     // Enable conversion on ADC14
-
-
-
-
-
-
     //=============================================================
 
 }
 
 unsigned GetSampleMicrophone() {
-
     //=============================================================
     // TO BE COMPLETED BY YOU
-
     // Use ADC14 to capture one sample from the microphone
     // Study the ADC settings in InitMicrophone and InitADC,
     // and write the proper ADC conversion calls. This function
     // returns the raw ADC data
+    ADC14_enableConversion();
+    ADC14_toggleConversionTrigger();
 
+    // We wait for the ADC to complete
+    while (ADC14_isBusy()) ;
 
-
-
-
-
-
+    // and we read the output result from buffer ADC_MEM0
+    return ADC14_getResult(ADC_MEM0);
     //=============================================================
 
 }

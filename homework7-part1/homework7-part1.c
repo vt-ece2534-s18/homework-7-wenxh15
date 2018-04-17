@@ -9,27 +9,24 @@ unsigned glbMax = 0;
 unsigned glbMin = 0xFFFF;
 
 void T32_INT1_IRQHandler() {
-
     //=============================================================
     // TO BE COMPLETED BY YOU
-
+    unsigned vx;
+    vx = GetSampleMicrophone();
     // Upon every timer interrupt, take one sample from the microphone
     // and compare it with the running maximum and minimum
-
     // If the same is bigger (than the maximum) or smaller
     // (than the minimum), update maximum resp. minimum with the sample value
-
+    if (vx > glbMax)
+    {
+        glbMax = vx;
+    }
+    else if (vx < glbMin)
+    {
+        glbMin = vx;
+    }
     // At the end of the ISR, clear the interrupt request from this timer
-
-
-
-
-
-
-
-
-
-
+    Timer32_clearInterruptFlag(TIMER32_0_BASE);
     //=============================================================
 }
 
