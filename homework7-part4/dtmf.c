@@ -49,12 +49,12 @@
 
 // FILL IN THE FOLLOWING VALUES TO DEFINE PROPER COEF VALUES
 
-static Gtap  t697 = {                                         };
-static Gtap  t770 = {                                         };
-static Gtap  t852 = {                                         };
-static Gtap t1209 = {                                         };
-static Gtap t1336 = {                                         };
-static Gtap t1477 = {                                         };
+static Gtap  t697 = {(int) (0.8538689 * 2 * (1 << FRACBITS)), 0, 0};
+static Gtap  t770 = {(int) (0.8226405 * 2 * (1 << FRACBITS)), 0, 0};
+static Gtap  t852 = {(int) (0.7843435 * 2 * (1 << FRACBITS)), 0, 0};
+static Gtap t1209 = {(int) (0.5820520 * 2 * (1 << FRACBITS)), 0, 0};
+static Gtap t1336 = {(int) (0.4981851 * 2 * (1 << FRACBITS)), 0, 0};
+static Gtap t1477 = {(int) (0.3993092 * 2 * (1 << FRACBITS)), 0, 0};
 
 void DTMFAddSample(unsigned x) {
     unsigned vx = ScaleSample(x);

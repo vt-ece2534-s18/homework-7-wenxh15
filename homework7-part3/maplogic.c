@@ -1,6 +1,32 @@
 #include "maplogic.h"
 #include <stdlib.h>
 
+// This function returns true when a row contains three cells of state mark
+int SameRow(tcellstate map[9], unsigned row, tcellstate mark) {
+   unsigned start = (row - 1) * 3;
+    return ((map[start  ] == map[start+1]) &&
+            (map[start+1] == map[start+2]) &&
+            (map[start  ] == mark));
+}
+
+// This function returns true when a column contains three cells of state mark
+int SameCol(tcellstate map[9], unsigned col, tcellstate mark) {
+    unsigned start = (col - 1);
+    return ((map[start  ] == map[3+start]) &&
+            (map[3+start] == map[6+start]) &&
+            (map[start  ] == mark));
+}
+
+// This function returns true when a diagonal contains three cells of state mark
+int SameDiag(tcellstate map[9], tcellstate mark) {
+    return (((map[0] == map[4]) && (map[4] == map[8]) && (map[0] == mark)));
+}
+
+// This function returns true when a diagonal contains three cells of state mark
+int SameDiagBack(tcellstate map[9], tcellstate mark) {
+    return (((map[2] == map[4]) && (map[4] == map[6]) && (map[2] == mark)));
+}
+
 // This function returns the winning code when X wins
 // There are 8 possible 'winning codes':
 //   1 = first row contains 3 X
@@ -13,45 +39,29 @@
 //   8 = antidiagonal contains 3 X
 // There is also a non-winning output:
 //   0 = No winning combination exists
+
+// This function returns true when X wins
 int CrossWins(tcellstate map[9]) {
     //=============================================================
     // TO BE COMPLETED BY YOU
     // returns the winning code for 'X'
-    if ((map[0] == map[1] == map[2] == map[3] == map[4] == map[5] == map[6] == map[7] == map[8]) && (map[0] != empty)){
-    if (map[0] == map[1] == map[2] == cross)
-    {
+    if (SameRow(map, 1, cross))
         return 1;
-    }
-    else if (map[3] == map[4] == map[5] == cross)
-    {
+    else if (SameRow(map, 2,   cross))
         return 2;
-    }
-    else if (map[6] == map[7] == map[8] == cross)
-    {
+    else if (SameRow(map, 3,   cross))
         return 3;
-    }
-    else if (map[0] == map[3] == map[6] == cross)
-    {
+    else if (SameCol(map, 1,   cross))
         return 4;
-    }
-    else if (map[1] == map[4] == map[7] == cross)
-    {
+    else if (SameCol(map, 2,   cross))
         return 5;
-    }
-    else if (map[2] == map[5] == map[8] == cross)
-    {
+    else if (SameCol(map, 3,   cross))
         return 6;
-    }
-    else if (map[0] == map[4] == map[8] == cross)
-    {
+    else if (SameDiag(map,     cross))
         return 7;
-    }
-    else if (map[2] == map[4] == map[6] == cross)
-    {
+    else if (SameDiagBack(map, cross))
         return 8;
-    }
-    }
-        return 0;
+    return 0;
 }
 
 // This function returns the winning code when O wins
@@ -66,49 +76,31 @@ int CrossWins(tcellstate map[9]) {
 //   8 = antidiagonal contains 3 O
 // There is also a non-winning output:
 //   0 = No winning combination exists
+
+// This function returns true when O wins
 int CircleWins(tcellstate map[9]) {
     //=============================================================
     // TO BE COMPLETED BY YOU
     // returns the winning code for 'O'
-    if ((map[0] == map[1] == map[2] == map[3] == map[4] == map[5] == map[6] == map[7] == map[8]) && (map[0] != empty)){
-    if (map[0] == map[1] == map[2] == circle)
-    {
-        return 9;
-    }
-    else if (map[3] == map[4] == map[5] == circle)
-    {
-        return 10;
-    }
-    else if (map[6] == map[7] == map[8] == circle)
-    {
-        return 11;
-    }
-    else if (map[0] == map[3] == map[6] == circle)
-    {
-        return 12;
-    }
-    else if (map[1] == map[4] == map[7] == circle)
-    {
-        return 13;
-    }
-    else if (map[2] == map[5] == map[8] == circle)
-    {
-        return 14;
-    }
-    else if (map[0] == map[4] == map[8] == circle)
-    {
-        return 15;
-    }
-    else if (map[2] == map[4] == map[6] == circle)
-    {
-        return 16;
-    }
-    }
-        return 0;
+    if (SameRow(map, 1, circle))
+        return 1;
+    else if (SameRow(map, 2,   circle))
+        return 2;
+    else if (SameRow(map, 3,   circle))
+        return 3;
+    else if (SameCol(map, 1,   circle))
+        return 4;
+    else if (SameCol(map, 2,   circle))
+        return 5;
+    else if (SameCol(map, 3,   circle))
+        return 6;
+    else if (SameDiag(map,     circle))
+        return 7;
+    else if (SameDiagBack(map, circle))
+        return 8;
+    return 0;
 }
 
-// This function returns true if there is a tie
-// (ie. neither X nor O wins, and there are no empty cells left)
 int Tie(tcellstate map[9]) {
     return ((map[0] != empty) &&
             (map[1] != empty) &&

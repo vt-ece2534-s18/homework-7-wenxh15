@@ -34,17 +34,9 @@ void SampleGoertzel(Gtap *t, unsigned x) {
     // CAREFUL: This expression has to be computed
     // using fixed point arithmetic. So you cannot use
     // standard integer multiplication (*).
-
-
-
-
-
-
-
-
-
-
-
+    int s0 = x + FIXMUL((t->coef), (t->s1)) - (t->s2);
+    t->s2 = t->s1;
+    t->s1 = s0;
     //==================================================
 }
 
@@ -72,15 +64,7 @@ int PowerGoertzel(Gtap *t) {
     // using fixed point arithmetic. So you cannot use
     // standard integer multiplication (*).
 
-
-
-
-
-
-
-
-
-
-
+    int P = FIXMUL((t->s1), (t->s1)) + FIXMUL((t->s2), (t->s2)) - FIXMUL((FIXMUL((t->coef), (t->s1))), (t->s2));
+    return P;
     //==================================================
 }
